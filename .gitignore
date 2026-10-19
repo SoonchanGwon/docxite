@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# env - never commit secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# build outputs
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# rhwp open-source submodule - never commit
+rhwp-오픈소스/
+
+# prisma
+apps/server/prisma/dev.db
+apps/server/prisma/migrations/dev/
+
+# logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# testing
+coverage/
+
+# vercel
+.vercel
