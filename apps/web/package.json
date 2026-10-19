@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "serve": "npx serve out",
+    "pages:deploy": "wrangler pages deploy out --project-name=docxite-web",
     "lint": "eslint",
     "check": "tsc --noEmit"
   },
@@ -16,6 +17,7 @@
     "@docssync/shared": "*"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -23,6 +25,7 @@
     "eslint-config-next": "^15.1.0",
     "tailwindcss": "^4",
     "@tailwindcss/postcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.20.0"
   }
 }
