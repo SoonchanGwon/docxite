@@ -76,7 +76,8 @@ export default function Home() {
   function openFile(file: File | undefined) {
     if (!file) return;
     setPendingFile(file);
-    router.push("/viewer");
+    const isPdf = file.name.toLowerCase().endsWith(".pdf");
+    router.push(isPdf ? "/pdf-editor" : "/viewer");
   }
 
   return (
