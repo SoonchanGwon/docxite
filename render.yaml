@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: docxite-server
+    runtime: node
+    region: singapore
+    plan: free
+    rootDir: .
+    buildCommand: npm install && npx prisma generate --schema=apps/server/prisma/schema.prisma && npm run build --workspace=apps/server
+    startCommand: node apps/server/dist/index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: CORS_ORIGIN
+        value: https://docxite-web.pages.dev
+      - key: DATABASE_URL
+        sync: false
