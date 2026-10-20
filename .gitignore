@@ -19,8 +19,9 @@ build/
 # rhwp open-source submodule - never commit
 rhwp-오픈소스/
 
-# copied at build time by apps/web's copy-wasm script
+# copied at build time by apps/web's copy-wasm / copy-pdf-worker scripts
 apps/web/public/rhwp_bg.wasm
+apps/web/public/pdf.worker.min.mjs
 
 # prisma
 apps/server/prisma/dev.db

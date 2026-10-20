@@ -84,7 +84,7 @@ export default function Home() {
       <input
         ref={fileInputRef}
         type="file"
-        accept=".hwp,.hwpx"
+        accept=".hwp,.hwpx,.pdf"
         className="hidden"
         onChange={(e) => openFile(e.target.files?.[0])}
       />

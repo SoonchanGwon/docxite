@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const HwpViewerClient = dynamic(() => import("./HwpViewerClient"), {
+const DocumentViewerClient = dynamic(() => import("./DocumentViewerClient"), {
   ssr: false,
   loading: () => (
     <div className="flex flex-1 items-center justify-center py-20 text-sm text-foreground/40">
@@ -12,5 +12,5 @@ const HwpViewerClient = dynamic(() => import("./HwpViewerClient"), {
 });
 
 export default function ViewerLoader() {
-  return <HwpViewerClient />;
+  return <DocumentViewerClient />;
 }

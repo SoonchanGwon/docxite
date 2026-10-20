@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "copy-wasm": "node -e \"require('fs').copyFileSync(require.resolve('@rhwp/core/rhwp_bg.wasm'), 'public/rhwp_bg.wasm')\"",
-    "predev": "npm run copy-wasm",
-    "prebuild": "npm run copy-wasm",
+    "copy-pdf-worker": "node -e \"require('fs').copyFileSync(require.resolve('pdfjs-dist/build/pdf.worker.min.mjs'), 'public/pdf.worker.min.mjs')\"",
+    "predev": "npm run copy-wasm && npm run copy-pdf-worker",
+    "prebuild": "npm run copy-wasm && npm run copy-pdf-worker",
     "dev": "next dev",
     "build": "next build",
     "serve": "npx serve out",
@@ -17,6 +18,7 @@
     "@docssync/shared": "*",
     "@rhwp/core": "^0.8.7",
     "next": "^15.1.0",
+    "pdfjs-dist": "^6.4.299",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
