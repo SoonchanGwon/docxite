@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { HwpDocument as HwpDocumentType } from "@rhwp/core";
+import { takePendingFile } from "@/lib/pendingFile";
 
 let wasmReady: Promise<void> | null = null;
 
@@ -69,6 +70,12 @@ export default function HwpViewerClient() {
       setErrorMessage(err instanceof Error ? err.message : String(err));
     }
   }
+
+  // Runs once on mount to pick up a file handed off from the home page.
+  useEffect(() => {
+    const pending = takePendingFile();
+    if (pending) void handleFile(pending);
+  }, []);
 
   function goToPage(next: number) {
     const doc = docRef.current;

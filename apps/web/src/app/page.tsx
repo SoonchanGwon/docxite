@@ -1,3 +1,9 @@
+"use client";
+
+import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { setPendingFile } from "@/lib/pendingFile";
+
 const features = [
   {
     title: "HWP / HWPX 지원",
@@ -64,8 +70,24 @@ function Icon({ children, className }: { children: React.ReactNode; className?: 
 }
 
 export default function Home() {
+  const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  function openFile(file: File | undefined) {
+    if (!file) return;
+    setPendingFile(file);
+    router.push("/viewer");
+  }
+
   return (
     <div className="flex min-h-screen flex-col">
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".hwp,.hwpx"
+        className="hidden"
+        onChange={(e) => openFile(e.target.files?.[0])}
+      />
       <header className="flex items-center justify-between border-b border-black/5 px-6 py-4">
         <div className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-md bg-brand text-white">
@@ -127,7 +149,10 @@ export default function Home() {
             </Icon>
             새 문서 작성
           </button>
-          <button className="flex items-center gap-2 rounded-xl border border-black/10 px-5 py-3 text-sm font-semibold hover:bg-black/5">
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className="flex items-center gap-2 rounded-xl border border-black/10 px-5 py-3 text-sm font-semibold hover:bg-black/5"
+          >
             <Icon className="h-4 w-4">
               <path
                 strokeLinecap="round"
@@ -164,7 +189,14 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="mt-6 flex w-full flex-col items-center gap-2 rounded-2xl border-2 border-dashed border-black/15 px-6 py-12">
+        <div
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            openFile(e.dataTransfer.files?.[0]);
+          }}
+          className="mt-6 flex w-full flex-col items-center gap-2 rounded-2xl border-2 border-dashed border-black/15 px-6 py-12"
+        >
           <Icon className="h-8 w-8 text-foreground/30">
             <path
               strokeLinecap="round"
