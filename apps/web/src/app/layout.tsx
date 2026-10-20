@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DocsSync",
+  title: "DocsSync 독스싱크 — HWP 한글 파일 온라인 편집 · PDF 편집",
   description: "브라우저에서 바로 여는 한글(HWP/HWPX)·PDF 실시간 공동 편집기",
 };
 
