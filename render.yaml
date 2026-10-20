@@ -6,7 +6,7 @@ services:
     plan: free
     rootDir: .
     buildCommand: npm install && npx prisma generate --schema=apps/server/prisma/schema.prisma && npm run build --workspace=apps/server
-    startCommand: node apps/server/dist/index.js
+    startCommand: npx prisma migrate deploy --schema=apps/server/prisma/schema.prisma && node apps/server/dist/index.js
     healthCheckPath: /health
     envVars:
       - key: NODE_VERSION
